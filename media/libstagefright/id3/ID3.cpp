@@ -637,6 +637,8 @@ void ID3::Iterator::findFrame() {
                 | (mParent.mData[mOffset + 4] << 8)
                 | mParent.mData[mOffset + 5];
 
+            if( mFrameSize == 0 ) return;
+
             mFrameSize += 6;
 
             // Prevent integer overflow in validation
@@ -694,6 +696,8 @@ void ID3::Iterator::findFrame() {
             if (SIZE_MAX - 10 <= baseSize) {
                 return;
             }
+
+            if (baseSize == 0) return;
 
             mFrameSize = 10 + baseSize; // add tag id, size field and flags
 
